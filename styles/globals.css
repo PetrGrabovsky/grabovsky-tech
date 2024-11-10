@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .layout-background {
+    @apply
+      border-border-primary from-bg-primary to-bg-secondary
+      shadow-brand-secondary backdrop-blur-tiny;
+  }
+}

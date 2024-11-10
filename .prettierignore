@@ -28,3 +28,4 @@ cypress/screenshots/
 .cache/
 .parcel-cache/
 .git/
+*.css
