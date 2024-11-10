@@ -3,6 +3,8 @@ import '@/styles/globals.css';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
+import Footer from '@/components/layout/Footer';
+import Header from '@/components/layout/Header';
 import { inter } from '@/styles/fonts';
 
 interface RootLayoutProps {
@@ -19,7 +21,9 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           'text-text-primary antialiased'
         )}
       >
-        {children}
+        <Header />
+        <main className='mb-8 mt-24 flex-grow'>{children}</main>
+        <Footer />
       </body>
     </html>
   );
