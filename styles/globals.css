@@ -16,3 +16,10 @@
       shadow-brand-secondary backdrop-blur-tiny;
   }
 }
+
+@layer utilities {
+  .transition-primary {
+    @apply
+      transition-all duration-300 ease-in-out;
+  }
+}
