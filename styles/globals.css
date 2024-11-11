@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :focus-visible {
+    @apply
+      outline-none ring-1 ring-brand-primary shadow-brand-primary rounded-md;
+  }
+}
+
 @layer components {
   .layout-background {
     @apply
