@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -14,7 +15,12 @@ const Navigation = () => {
 
   return (
     <nav>
-      <ul className='flex items-center md:flex-row md:space-x-4'>
+      <ul
+        className={clsx(
+          'flex flex-col items-start space-y-4 md:items-center md:space-y-0',
+          'md:flex-row md:space-x-4'
+        )}
+      >
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const isHovered = hoveredId === item.id || (!hoveredId && isActive);
