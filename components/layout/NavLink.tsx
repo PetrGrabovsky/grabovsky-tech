@@ -31,9 +31,10 @@ const NavLink = ({
     onMouseLeave={onHoverLeave}
     className={clsx(
       sora.className,
-      'transition-primary flex items-center justify-center space-x-2 px-2',
-      'border-b border-brand-secondary py-1 text-sm text-text-secondary',
-      { 'border-opacity-100': isHovered, 'border-opacity-0': !isHovered }
+      'transition-primary flex w-full items-start justify-start space-x-2',
+      'border-b border-brand-secondary px-2 py-1 text-sm',
+      'text-text-secondary',
+      isHovered ? 'border-opacity-100' : 'border-opacity-0'
     )}
   >
     <Icon aria-hidden='true' className='h-4 w-auto' />
