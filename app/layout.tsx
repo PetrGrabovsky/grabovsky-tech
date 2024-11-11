@@ -5,6 +5,7 @@ import { ReactNode } from 'react';
 
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
+import LayoutProvider from '@/providers/LayoutProvider';
 import { inter } from '@/styles/fonts';
 
 interface RootLayoutProps {
@@ -21,9 +22,11 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           'text-text-primary antialiased'
         )}
       >
-        <Header />
-        <main className='mb-8 mt-24 flex-grow'>{children}</main>
-        <Footer />
+        <LayoutProvider>
+          <Header />
+          <main className='mb-8 mt-24 flex-grow'>{children}</main>
+          <Footer />
+        </LayoutProvider>
       </body>
     </html>
   );
