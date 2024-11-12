@@ -4,8 +4,12 @@ import { IoMdClose } from 'react-icons/io';
 
 import useLayout from '@/hooks/useLayout';
 
-const MenuButton = () => {
-  const { isMobileNavOpen, handleMenuButtonClick } = useLayout();
+interface MenuButtonProps {
+  isMobileNavOpen: boolean;
+}
+
+const MenuButton = ({ isMobileNavOpen }: MenuButtonProps) => {
+  const { handleMenuButtonClick } = useLayout();
 
   const Icon = isMobileNavOpen ? IoMdClose : IoMdMenu;
 
@@ -17,8 +21,8 @@ const MenuButton = () => {
         aria-controls='mainNavigation'
         aria-label={isMobileNavOpen ? 'Skrýt navigaci' : 'Zobrazit navigaci'}
         className={clsx(
-          isMobileNavOpen ? 'text-accent-primary' : 'text-text-secondary',
-          'h-full'
+          'h-full',
+          isMobileNavOpen ? 'text-accent-primary' : 'text-text-secondary'
         )}
       >
         <Icon className='h-full w-full' />

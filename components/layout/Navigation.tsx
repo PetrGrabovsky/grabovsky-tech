@@ -1,19 +1,22 @@
 import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import navItems from '@/data/navItems';
-import useLayout from '@/hooks/useLayout';
 
 import NavLink from './NavLink';
 
-const Navigation = () => {
+interface NavigationProps {
+  isMobileView: boolean;
+  isMobileNavOpen: boolean;
+}
+
+const Navigation = ({ isMobileView, isMobileNavOpen }: NavigationProps) => {
   const pathname = usePathname() || '/';
   const [hoveredId, setHoveredId] = useState<number | null>(null);
-  const { isMobileView, isMobileNavOpen } = useLayout();
 
-  const handleHover = (id: number) => setHoveredId(id);
-  const handleHoverLeave = () => setHoveredId(null);
+  const handleHover = useCallback((id: number) => setHoveredId(id), []);
+  const handleHoverLeave = useCallback(() => setHoveredId(null), []);
 
   return (
     <nav

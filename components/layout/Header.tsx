@@ -11,6 +11,10 @@ import Navigation from './Navigation';
 const Header = () => {
   const { isMobileView, isMobileNavOpen } = useLayout();
 
+  const renderNavigation = () => (
+    <Navigation isMobileNavOpen={isMobileNavOpen} isMobileView={isMobileView} />
+  );
+
   return (
     <header
       className={clsx(
@@ -20,12 +24,14 @@ const Header = () => {
       )}
     >
       <div className='container flex flex-grow flex-col'>
-        {/* NavBar */}
         <div className='flex h-16 items-center justify-between'>
           <Logo />
-          {isMobileView ? <MenuButton /> : <Navigation />}
+          {isMobileView ? (
+            <MenuButton isMobileNavOpen={isMobileNavOpen} />
+          ) : (
+            renderNavigation()
+          )}
         </div>
-
         {isMobileView && (
           <div
             className={clsx(
@@ -34,7 +40,7 @@ const Header = () => {
               isMobileNavOpen ? 'flex-grow opacity-100' : 'h-0 opacity-0'
             )}
           >
-            <Navigation />
+            {renderNavigation()}
           </div>
         )}
       </div>

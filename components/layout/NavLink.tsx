@@ -1,16 +1,11 @@
 import clsx from 'clsx';
 import Link from 'next/link';
-import { IconType } from 'react-icons';
 
 import { sora } from '@/styles/fonts';
+import NavItem from '@/types/navItem';
 
 interface NavLinkProps {
-  navItem: {
-    id: number;
-    href: string;
-    label: string;
-    Icon: IconType;
-  };
+  navItem: NavItem;
   isActive: boolean;
   isHovered: boolean;
   isTabbable: boolean;
