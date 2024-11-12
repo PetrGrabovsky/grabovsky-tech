@@ -13,6 +13,7 @@ interface NavLinkProps {
   };
   isActive: boolean;
   isHovered: boolean;
+  isTabbable: boolean;
   onHover: () => void;
   onHoverLeave: () => void;
 }
@@ -21,11 +22,13 @@ const NavLink = ({
   navItem: { href, label, Icon },
   isActive,
   isHovered,
+  isTabbable,
   onHover,
   onHoverLeave,
 }: NavLinkProps) => (
   <Link
     href={href}
+    tabIndex={isTabbable ? 0 : -1}
     aria-current={isActive ? 'page' : undefined}
     onMouseEnter={onHover}
     onMouseLeave={onHoverLeave}
