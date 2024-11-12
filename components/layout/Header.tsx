@@ -4,7 +4,8 @@ import clsx from 'clsx';
 
 import useLayout from '@/hooks/useLayout';
 
-import NavBar from './NavBar';
+import Logo from './Logo';
+import MenuButton from './MenuButton';
 import Navigation from './Navigation';
 
 const Header = () => {
@@ -19,7 +20,12 @@ const Header = () => {
       )}
     >
       <div className='container flex flex-grow flex-col'>
-        <NavBar />
+        {/* NavBar */}
+        <div className='flex h-16 items-center justify-between'>
+          <Logo />
+          {isMobileView ? <MenuButton /> : <Navigation />}
+        </div>
+
         {isMobileView && (
           <div
             className={clsx(
