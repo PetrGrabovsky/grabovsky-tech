@@ -9,12 +9,14 @@ interface LayoutContextType {
   isMobileView: boolean;
   isMobileNavOpen: boolean;
   handleMenuButtonClick: () => void;
+  handleNavLinkClick: () => void;
 }
 
 const initialState: LayoutContextType = {
   isMobileView: true,
   isMobileNavOpen: false,
   handleMenuButtonClick: () => {},
+  handleNavLinkClick: () => {},
 };
 
 export const LayoutContext = createContext<LayoutContextType>(initialState);
@@ -47,9 +49,22 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
     }, 300);
   }, []);
 
+  const handleNavLinkClick = () => {
+    if (isMobileView) {
+      setTimeout(() => {
+        setIsMobileNavOpen(false);
+      }, 300);
+    }
+  };
+
   return (
     <LayoutContext.Provider
-      value={{ isMobileView, isMobileNavOpen, handleMenuButtonClick }}
+      value={{
+        isMobileView,
+        isMobileNavOpen,
+        handleMenuButtonClick,
+        handleNavLinkClick,
+      }}
     >
       {children}
     </LayoutContext.Provider>
