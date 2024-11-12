@@ -3,11 +3,11 @@ import Link from 'next/link';
 
 const Logo = () => {
   return (
-    <div className='h-full py-2'>
+    <div className='h-full py-1'>
       <Link
         href='/'
         aria-label='Logo grabovsky.tech, přejít na domovskou stránku'
-        className='block h-full'
+        className='block h-full p-1'
       >
         <svg
           viewBox='0 0 376 276'
