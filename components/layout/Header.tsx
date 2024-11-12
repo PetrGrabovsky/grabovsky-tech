@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <header
       className={clsx(
-        'layout-background fixed inset-0 z-50 border-b bg-gradient-to-b',
+        'layout-background fixed inset-0 z-40 border-b bg-gradient-to-b',
         'transition-primary flex flex-col',
         isMobileNavOpen ? 'h-screen' : 'h-16'
       )}

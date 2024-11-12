@@ -32,7 +32,7 @@ const Footer = () => {
           <a
             href='mailto:info@grabovsky.tech'
             aria-label='Kontaktujte mě e-mailem na info@grabovsky.tech'
-            className='transition-primary hover:scale-110'
+            className='transition-primary hover:scale-105'
           >
             info@grabovsky.tech
           </a>
