@@ -1,11 +1,19 @@
+'use client';
+
 import clsx from 'clsx';
 import Link from 'next/link';
 
+import useLayout from '@/hooks/useLayout';
+
 const Logo = () => {
+  const { logoRef, handleLogoClick } = useLayout();
+
   return (
     <div className='h-full py-1'>
       <Link
         href='/'
+        onClick={handleLogoClick}
+        ref={logoRef}
         aria-label='Logo grabovsky.tech, přejít na domovskou stránku'
         className='block h-full p-1'
       >

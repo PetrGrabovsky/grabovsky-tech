@@ -1,15 +1,27 @@
 'use client';
 
 import { throttle } from 'lodash';
-import { createContext, ReactNode, useEffect, useMemo, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  RefObject,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import useIsMobileView from '@/hooks/useIsMobileView';
+import useOutsideClickHandler from '@/hooks/useOutsideClickHandler';
 
 interface LayoutContextType {
   isMobileView: boolean;
   isMobileNavOpen: boolean;
   handleMenuButtonClick: () => void;
   handleNavLinkClick: () => void;
+  handleLogoClick: () => void;
+  navRef: RefObject<HTMLDivElement>;
+  logoRef: RefObject<HTMLAnchorElement>;
 }
 
 const initialState: LayoutContextType = {
@@ -17,6 +29,9 @@ const initialState: LayoutContextType = {
   isMobileNavOpen: false,
   handleMenuButtonClick: () => {},
   handleNavLinkClick: () => {},
+  handleLogoClick: () => {},
+  navRef: { current: null },
+  logoRef: { current: null },
 };
 
 export const LayoutContext = createContext<LayoutContextType>(initialState);
@@ -30,6 +45,12 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(
     initialState.isMobileNavOpen
   );
+  const navRef = useRef<HTMLDivElement | null>(null);
+  const logoRef = useRef<HTMLAnchorElement | null>(null);
+
+  useOutsideClickHandler([navRef, logoRef], isMobileNavOpen, () =>
+    setIsMobileNavOpen(false)
+  );
 
   useEffect(() => {
     if (!isMobileView) {
@@ -37,23 +58,29 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
     }
   }, [isMobileView]);
 
-  useEffect(() => {
-    return () => {
-      handleMenuButtonClick.cancel();
-    };
-  }, []);
-
   const handleMenuButtonClick = useMemo(() => {
     return throttle(() => {
       setIsMobileNavOpen((prev) => !prev);
     }, 300);
   }, []);
 
+  useEffect(() => {
+    return () => {
+      handleMenuButtonClick.cancel();
+    };
+  }, [handleMenuButtonClick]);
+
   const handleNavLinkClick = () => {
     if (isMobileView) {
       setTimeout(() => {
         setIsMobileNavOpen(false);
       }, 300);
+    }
+  };
+
+  const handleLogoClick = () => {
+    if (isMobileView && isMobileNavOpen) {
+      setIsMobileNavOpen(false);
     }
   };
 
@@ -64,6 +91,9 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
         isMobileNavOpen,
         handleMenuButtonClick,
         handleNavLinkClick,
+        handleLogoClick,
+        navRef,
+        logoRef,
       }}
     >
       {children}

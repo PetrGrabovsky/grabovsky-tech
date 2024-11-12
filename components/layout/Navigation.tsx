@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import { useCallback, useState } from 'react';
 
 import navItems from '@/data/navItems';
+import useLayout from '@/hooks/useLayout';
 
 import NavLink from './NavLink';
 
@@ -14,6 +15,7 @@ interface NavigationProps {
 const Navigation = ({ isMobileView, isMobileNavOpen }: NavigationProps) => {
   const pathname = usePathname() || '/';
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const { navRef } = useLayout();
 
   const handleHover = useCallback((id: number) => setHoveredId(id), []);
   const handleHoverLeave = useCallback(() => setHoveredId(null), []);
@@ -22,8 +24,10 @@ const Navigation = ({ isMobileView, isMobileNavOpen }: NavigationProps) => {
     <nav
       id='mainNavigation'
       role='navigation'
+      ref={navRef}
       aria-label='Hlavní navigace'
       aria-hidden={isMobileView && !isMobileNavOpen}
+      className='z-50'
     >
       <ul
         className={clsx(
