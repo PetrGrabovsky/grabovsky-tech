@@ -30,12 +30,18 @@ const NavLink = ({
     className={clsx(
       sora.className,
       'transition-primary flex w-full items-start justify-start space-x-2',
-      'border-b border-brand-secondary px-2 py-1 text-sm',
+      'px-2 py-1 text-sm md:border-b md:border-brand-secondary',
       'text-text-secondary',
-      isHovered ? 'border-opacity-100' : 'border-opacity-0'
+      isHovered ? 'md:border-opacity-100' : 'md:border-opacity-0'
     )}
   >
-    <Icon aria-hidden='true' className='h-4 w-auto' />
+    <Icon
+      aria-hidden='true'
+      className={clsx(
+        'transition-primary h-4 w-auto md:text-text-secondary',
+        isHovered ? 'scale-110 text-brand-secondary' : 'text-text-secondary'
+      )}
+    />
     <span>{label}</span>
   </Link>
 );
