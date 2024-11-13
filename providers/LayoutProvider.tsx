@@ -14,10 +14,12 @@ import {
 import useIsMobileView from '@/hooks/useIsMobileView';
 import useOutsideClickHandler from '@/hooks/useOutsideClickHandler';
 import useScrollLock from '@/hooks/useScrollLock';
+import useShrunkView from '@/hooks/useShrunkView';
 
 interface LayoutContextType {
   isMobileView: boolean;
   isMobileNavOpen: boolean;
+  isShrunkView: boolean;
   handleMenuButtonClick: () => void;
   handleNavLinkClick: () => void;
   handleLogoClick: () => void;
@@ -28,6 +30,7 @@ interface LayoutContextType {
 const initialState: LayoutContextType = {
   isMobileView: true,
   isMobileNavOpen: false,
+  isShrunkView: false,
   handleMenuButtonClick: () => {},
   handleNavLinkClick: () => {},
   handleLogoClick: () => {},
@@ -46,6 +49,7 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(
     initialState.isMobileNavOpen
   );
+  const isShrunkView = useShrunkView(isMobileView, isMobileNavOpen);
   const navRef = useRef<HTMLDivElement | null>(null);
   const logoRef = useRef<HTMLAnchorElement | null>(null);
 
@@ -92,6 +96,7 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
       value={{
         isMobileView,
         isMobileNavOpen,
+        isShrunkView,
         handleMenuButtonClick,
         handleNavLinkClick,
         handleLogoClick,
