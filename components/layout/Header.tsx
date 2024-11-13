@@ -1,15 +1,22 @@
 'use client';
 
 import clsx from 'clsx';
+import Link from 'next/link';
 
 import useLayout from '@/hooks/useLayout';
 
-import Logo from './Logo';
+import Logo from '../shared/Logo';
 import MenuButton from './MenuButton';
 import Navigation from './Navigation';
 
 const Header = () => {
-  const { isMobileView, isMobileNavOpen, isShrunkView } = useLayout();
+  const {
+    isMobileView,
+    isMobileNavOpen,
+    isShrunkView,
+    logoRef,
+    handleCloseMobileNav,
+  } = useLayout();
 
   const renderNavigation = () => (
     <Navigation isMobileNavOpen={isMobileNavOpen} isMobileView={isMobileView} />
@@ -24,13 +31,31 @@ const Header = () => {
       )}
     >
       <div className='container flex flex-grow flex-col'>
+        {/* Navbar */}
         <div
           className={clsx(
             'transition-primary flex items-center justify-between',
             isShrunkView ? 'h-10' : 'h-16'
           )}
         >
-          <Logo />
+          {/* Logo */}
+          <div
+            className={clsx(
+              'transition-primary h-full',
+              isShrunkView ? 'py-1' : 'py-2'
+            )}
+          >
+            <Link
+              href='/'
+              onClick={handleCloseMobileNav}
+              ref={logoRef}
+              aria-label='Logo grabovsky.tech, přejít na domovskou stránku'
+              className='block h-full'
+            >
+              <Logo />
+            </Link>
+          </div>
+
           {isMobileView ? (
             <MenuButton
               isMobileNavOpen={isMobileNavOpen}
@@ -40,6 +65,7 @@ const Header = () => {
             renderNavigation()
           )}
         </div>
+
         {isMobileView && (
           <div
             className={clsx(
