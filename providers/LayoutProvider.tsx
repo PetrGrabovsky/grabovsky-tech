@@ -13,6 +13,7 @@ import {
 
 import useIsMobileView from '@/hooks/useIsMobileView';
 import useOutsideClickHandler from '@/hooks/useOutsideClickHandler';
+import useScrollLock from '@/hooks/useScrollLock';
 
 interface LayoutContextType {
   isMobileView: boolean;
@@ -51,6 +52,8 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
   useOutsideClickHandler([navRef, logoRef], isMobileNavOpen, () =>
     setIsMobileNavOpen(false)
   );
+
+  useScrollLock(isMobileNavOpen);
 
   useEffect(() => {
     if (!isMobileView) {
