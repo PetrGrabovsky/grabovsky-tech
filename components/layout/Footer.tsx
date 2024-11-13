@@ -32,6 +32,7 @@ const Footer = () => {
           <a
             href='mailto:info@grabovsky.tech'
             aria-label='Kontaktujte mě e-mailem na info@grabovsky.tech'
+            tabIndex={isMobileNavOpen ? -1 : 0}
             className='transition-primary hover:scale-105'
           >
             info@grabovsky.tech
