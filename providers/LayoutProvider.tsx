@@ -1,17 +1,9 @@
 'use client';
 
-import { throttle } from 'lodash';
-import {
-  createContext,
-  ReactNode,
-  RefObject,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { createContext, ReactNode, RefObject, useRef } from 'react';
 
 import useIsMobileView from '@/hooks/useIsMobileView';
+import useMenuHandlers from '@/hooks/useMenuHandlers';
 import useOutsideClickHandler from '@/hooks/useOutsideClickHandler';
 import useScrollLock from '@/hooks/useScrollLock';
 import useShrunkView from '@/hooks/useShrunkView';
@@ -22,7 +14,7 @@ interface LayoutContextType {
   isShrunkView: boolean;
   handleMenuButtonClick: () => void;
   handleNavLinkClick: () => void;
-  handleLogoClick: () => void;
+  handleCloseMobileNav: () => void;
   navRef: RefObject<HTMLDivElement>;
   logoRef: RefObject<HTMLAnchorElement>;
 }
@@ -33,7 +25,7 @@ const initialState: LayoutContextType = {
   isShrunkView: false,
   handleMenuButtonClick: () => {},
   handleNavLinkClick: () => {},
-  handleLogoClick: () => {},
+  handleCloseMobileNav: () => {},
   navRef: { current: null },
   logoRef: { current: null },
 };
@@ -46,50 +38,23 @@ interface LayoutProviderProps {
 
 const LayoutProvider = ({ children }: LayoutProviderProps) => {
   const isMobileView = useIsMobileView(initialState.isMobileView);
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(
-    initialState.isMobileNavOpen
-  );
+
+  const {
+    isMobileNavOpen,
+    handleMenuButtonClick,
+    handleNavLinkClick,
+    handleCloseMobileNav,
+  } = useMenuHandlers(isMobileView);
+
   const isShrunkView = useShrunkView(isMobileView, isMobileNavOpen);
   const navRef = useRef<HTMLDivElement | null>(null);
   const logoRef = useRef<HTMLAnchorElement | null>(null);
 
   useOutsideClickHandler([navRef, logoRef], isMobileNavOpen, () =>
-    setIsMobileNavOpen(false)
+    handleCloseMobileNav()
   );
 
   useScrollLock(isMobileNavOpen);
-
-  useEffect(() => {
-    if (!isMobileView) {
-      setIsMobileNavOpen(false);
-    }
-  }, [isMobileView]);
-
-  const handleMenuButtonClick = useMemo(() => {
-    return throttle(() => {
-      setIsMobileNavOpen((prev) => !prev);
-    }, 300);
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      handleMenuButtonClick.cancel();
-    };
-  }, [handleMenuButtonClick]);
-
-  const handleNavLinkClick = () => {
-    if (isMobileView) {
-      setTimeout(() => {
-        setIsMobileNavOpen(false);
-      }, 300);
-    }
-  };
-
-  const handleLogoClick = () => {
-    if (isMobileView && isMobileNavOpen) {
-      setIsMobileNavOpen(false);
-    }
-  };
 
   return (
     <LayoutContext.Provider
@@ -99,7 +64,7 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
         isShrunkView,
         handleMenuButtonClick,
         handleNavLinkClick,
-        handleLogoClick,
+        handleCloseMobileNav,
         navRef,
         logoRef,
       }}

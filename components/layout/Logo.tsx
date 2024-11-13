@@ -6,13 +6,13 @@ import Link from 'next/link';
 import useLayout from '@/hooks/useLayout';
 
 const Logo = () => {
-  const { logoRef, handleLogoClick } = useLayout();
+  const { logoRef, handleCloseMobileNav } = useLayout();
 
   return (
     <div className='h-full py-1'>
       <Link
         href='/'
-        onClick={handleLogoClick}
+        onClick={handleCloseMobileNav}
         ref={logoRef}
         aria-label='Logo grabovsky.tech, přejít na domovskou stránku'
         className='block h-full p-1'

@@ -9,7 +9,7 @@ import MenuButton from './MenuButton';
 import Navigation from './Navigation';
 
 const Header = () => {
-  const { isMobileView, isMobileNavOpen } = useLayout();
+  const { isMobileView, isMobileNavOpen, isShrunkView } = useLayout();
 
   const renderNavigation = () => (
     <Navigation isMobileNavOpen={isMobileNavOpen} isMobileView={isMobileView} />
@@ -19,15 +19,23 @@ const Header = () => {
     <header
       className={clsx(
         'layout-background fixed inset-0 z-40 border-b bg-gradient-to-b',
-        'transition-primary flex flex-col',
-        isMobileNavOpen ? 'h-screen' : 'h-16'
+        'transition-primary flex flex-col overflow-hidden',
+        isMobileNavOpen ? 'h-screen' : isShrunkView ? 'h-10' : 'h-16'
       )}
     >
       <div className='container flex flex-grow flex-col'>
-        <div className='flex h-16 items-center justify-between'>
+        <div
+          className={clsx(
+            'transition-primary flex items-center justify-between',
+            isShrunkView ? 'h-10' : 'h-16'
+          )}
+        >
           <Logo />
           {isMobileView ? (
-            <MenuButton isMobileNavOpen={isMobileNavOpen} />
+            <MenuButton
+              isMobileNavOpen={isMobileNavOpen}
+              isShrunkView={isShrunkView}
+            />
           ) : (
             renderNavigation()
           )}

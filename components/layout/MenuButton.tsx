@@ -6,15 +6,21 @@ import useLayout from '@/hooks/useLayout';
 
 interface MenuButtonProps {
   isMobileNavOpen: boolean;
+  isShrunkView: boolean;
 }
 
-const MenuButton = ({ isMobileNavOpen }: MenuButtonProps) => {
+const MenuButton = ({ isMobileNavOpen, isShrunkView }: MenuButtonProps) => {
   const { handleMenuButtonClick } = useLayout();
 
   const Icon = isMobileNavOpen ? IoMdClose : IoMdMenu;
 
   return (
-    <div className='h-full py-3'>
+    <div
+      className={clsx(
+        'transition-primary h-full',
+        isShrunkView ? 'py-1' : 'py-3'
+      )}
+    >
       <button
         onClick={handleMenuButtonClick}
         aria-expanded={isMobileNavOpen}
