@@ -1,11 +1,14 @@
 import { ChildrenProperties } from '@/shared/types';
 
+import Footer from './Footer';
+import Header from './Header';
+
 const Layout = ({ children }: ChildrenProperties) => {
   return (
     <>
-      <header>Header</header>
-      <main>{children}</main>
-      <footer>Footer</footer>
+      <Header />
+      <main className='flex-grow'>{children}</main>
+      <Footer />
     </>
   );
 };
