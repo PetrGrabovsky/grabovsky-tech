@@ -4,6 +4,7 @@ const MOBILE_BREAKPOINT = 768;
 
 const useLayoutManager = () => {
   const [isMobile, setIsMobile] = useState(true);
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   // Detekce mobilního zobrazení
   useEffect(() => {
@@ -19,7 +20,12 @@ const useLayoutManager = () => {
     return () => mediaQuery.removeEventListener('change', updateIsMobile);
   }, []);
 
-  return { isMobile };
+  // Funkce pro přepínání mobilní navigace
+  const toggleNavOpen = () => {
+    setIsNavOpen((previous) => !previous);
+  };
+
+  return { isMobile, isNavOpen, toggleNavOpen };
 };
 
 export default useLayoutManager;
