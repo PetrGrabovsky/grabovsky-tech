@@ -2,6 +2,7 @@ import '@/shared/globals.css';
 
 import clsx from 'clsx';
 
+import Layout from '@/layout/components/Layout';
 import { sora } from '@/shared/fonts';
 import { ChildrenProperties } from '@/shared/types';
 
@@ -14,7 +15,7 @@ const RootLayout = ({ children }: ChildrenProperties) => {
           'flex min-h-screen flex-col overflow-x-hidden bg-neutral-950 antialiased'
         )}
       >
-        {children}
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
