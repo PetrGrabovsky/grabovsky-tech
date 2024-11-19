@@ -2,6 +2,7 @@ import { ChildrenProperties } from '@/shared/types';
 
 import Footer from './Footer';
 import Header from './Header';
+import LinkedLogo from './LinkedLogo';
 import Navbar from './Navbar';
 
 const Layout = ({ children }: ChildrenProperties) => {
@@ -9,7 +10,7 @@ const Layout = ({ children }: ChildrenProperties) => {
     <>
       <Header>
         <Navbar>
-          <span>Logo</span>
+          <LinkedLogo />
           <span>Menu</span>
         </Navbar>
       </Header>
