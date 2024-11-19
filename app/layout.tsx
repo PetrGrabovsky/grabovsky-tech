@@ -1,12 +1,8 @@
 import '@/shared/globals.css';
 
-import { ReactNode } from 'react';
+import { ChildrenProperties } from '@/shared/types';
 
-interface RootLayoutProperties {
-  children: ReactNode;
-}
-
-const RootLayout = ({ children }: RootLayoutProperties) => {
+const RootLayout = ({ children }: ChildrenProperties) => {
   return (
     <html lang='cs'>
       <body className='antialiased'>{children}</body>
