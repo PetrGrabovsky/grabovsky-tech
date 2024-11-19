@@ -4,6 +4,10 @@ export default {
   content: ['./shared/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './layout/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      colors: {
+        'brand-primary': '#00cc33',
+        'brand-secondary': '#663399',
+      },
       screens: {
         '2xl': '1280px',
       },
