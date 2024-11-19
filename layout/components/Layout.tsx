@@ -8,7 +8,10 @@ const Layout = ({ children }: ChildrenProperties) => {
   return (
     <>
       <Header>
-        <Navbar />
+        <Navbar>
+          <span>Logo</span>
+          <span>Menu</span>
+        </Navbar>
       </Header>
       <main className='flex-grow'>{children}</main>
       <Footer />
