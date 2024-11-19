@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .layout-background {
+    @apply bg-neutral-900 bg-opacity-90 backdrop-blur-sm;
+  }
+}
