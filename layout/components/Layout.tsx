@@ -14,7 +14,7 @@ const Layout = ({ children }: ChildrenProperties) => {
           <span>Menu</span>
         </Navbar>
       </Header>
-      <main className='flex-grow'>{children}</main>
+      <main className='mb-8 mt-24 flex-grow'>{children}</main>
       <Footer />
     </>
   );
