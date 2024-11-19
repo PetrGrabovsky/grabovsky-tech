@@ -1,9 +1,9 @@
-import '@/shared/globals.css';
+import '@/shared/styles/globals.css';
 
 import clsx from 'clsx';
 
 import Layout from '@/layout/components/Layout';
-import { sora } from '@/shared/fonts';
+import { sora } from '@/shared/styles/fonts';
 import { ChildrenProperties } from '@/shared/types';
 
 const RootLayout = ({ children }: ChildrenProperties) => {
