@@ -1,4 +1,4 @@
-import './globals.css';
+import '@/shared/globals.css';
 
 import { ReactNode } from 'react';
 
