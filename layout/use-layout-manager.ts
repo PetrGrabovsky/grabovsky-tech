@@ -45,6 +45,17 @@ const useLayoutManager = () => {
     return () => observer.disconnect();
   }, [isMobile, isNavOpen]);
 
+  // Blokace scrollování
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = isNavOpen ? 'hidden' : originalOverflow;
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isNavOpen]);
+
   // Funkce pro přepínání mobilní navigace
   const toggleNavOpen = () => setIsNavOpen((previous) => !previous);
 
