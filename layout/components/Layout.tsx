@@ -30,7 +30,10 @@ const Layout = ({ children }: PropsWithChildren) => {
 
       {isMobile && (
         <MobileNavContainer
-          className={clsx(isNavOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0')}
+          className={clsx(
+            isNavOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0',
+            isShrunk ? 'top-10' : 'top-16'
+          )}
         ></MobileNavContainer>
       )}
 

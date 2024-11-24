@@ -9,7 +9,7 @@ const MobileNavContainer = ({ children, className }: MobileNavContainerPropertie
   return (
     <div
       className={clsx(
-        'layout-background transition-primary fixed bottom-0 left-0 right-0 top-16',
+        'layout-background transition-primary fixed bottom-0 left-0 right-0',
         className
       )}
     >
