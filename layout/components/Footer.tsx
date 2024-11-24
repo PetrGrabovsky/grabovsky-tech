@@ -1,5 +1,5 @@
 const Footer = () => {
-  return <footer className='h-10 bg-red-500'>Footer</footer>;
+  return <footer className='layout-background h-12 w-full'></footer>;
 };
 
 export default Footer;

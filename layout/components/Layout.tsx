@@ -1,31 +1,35 @@
 'use client';
 
-import { ChildrenProperties } from '@/shared/types';
+import clsx from 'clsx';
+import { PropsWithChildren } from 'react';
 
 import useLayoutManager from '../use-layout-manager';
 import Footer from './Footer';
 import Header from './Header';
 import LinkedLogo from './LinkedLogo';
+import Main from './Main';
 import MenuButton from './MenuButton';
-import Navbar from './Navbar';
+import MobileNavContainer from './MobileNavContainer';
 
-const Layout = ({ children }: ChildrenProperties) => {
+const Layout = ({ children }: PropsWithChildren) => {
   const { isMobile, isNavOpen, toggleNavOpen } = useLayoutManager();
 
   return (
     <>
       <Header>
-        <Navbar>
-          <LinkedLogo />
-          {isMobile ? (
-            <MenuButton isNavOpen={isNavOpen} onClick={toggleNavOpen} />
-          ) : (
-            <span className='text-gray-400'>Navigation</span>
-          )}
-        </Navbar>
+        <LinkedLogo />
+        <MenuButton isNavOpen={isNavOpen} onClick={toggleNavOpen} />
       </Header>
-      <main className='mb-8 mt-24 flex-grow'>{children}</main>
-      <Footer />
+
+      {isMobile && (
+        <MobileNavContainer
+          className={clsx(isNavOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0')}
+        ></MobileNavContainer>
+      )}
+
+      <Main>{children}</Main>
+
+      <Footer></Footer>
     </>
   );
 };

@@ -1,7 +1,16 @@
-import { ChildrenProperties } from '@/shared/types';
+import clsx from 'clsx';
+import { PropsWithChildren } from 'react';
 
-const Header = ({ children }: ChildrenProperties) => {
-  return <header className='layout-background fixed inset-0 h-16'>{children}</header>;
+interface HeaderProperties extends PropsWithChildren {
+  className?: string;
+}
+
+const Header = ({ children, className }: HeaderProperties) => {
+  return (
+    <header className={clsx('layout-background fixed inset-0 h-16 w-full', className)}>
+      <div className='container flex h-full w-full justify-between py-2'>{children}</div>
+    </header>
+  );
 };
 
 export default Header;

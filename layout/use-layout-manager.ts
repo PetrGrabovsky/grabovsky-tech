@@ -10,9 +10,7 @@ const useLayoutManager = () => {
   useEffect(() => {
     const mediaQuery = globalThis.matchMedia(`(min-width: ${MOBILE_BREAKPOINT}px)`);
 
-    const updateIsMobile = () => {
-      setIsMobile(!mediaQuery.matches);
-    };
+    const updateIsMobile = () => setIsMobile(!mediaQuery.matches);
 
     updateIsMobile();
     mediaQuery.addEventListener('change', updateIsMobile);
@@ -21,9 +19,7 @@ const useLayoutManager = () => {
   }, []);
 
   // Funkce pro přepínání mobilní navigace
-  const toggleNavOpen = () => {
-    setIsNavOpen((previous) => !previous);
-  };
+  const toggleNavOpen = () => setIsNavOpen((previous) => !previous);
 
   return { isMobile, isNavOpen, toggleNavOpen };
 };
