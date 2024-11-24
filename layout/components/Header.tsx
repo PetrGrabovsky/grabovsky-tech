@@ -7,7 +7,12 @@ interface HeaderProperties extends PropsWithChildren {
 
 const Header = ({ children, className }: HeaderProperties) => {
   return (
-    <header className={clsx('layout-background fixed inset-0 h-16 w-full', className)}>
+    <header
+      className={clsx(
+        'layout-background fixed inset-0 w-full transition-all duration-300 ease-in-out',
+        className
+      )}
+    >
       <div className='container flex h-full w-full justify-between py-2'>{children}</div>
     </header>
   );

@@ -1,11 +1,15 @@
-import { RefObject } from 'react';
+import { forwardRef, MutableRefObject } from 'react';
 
-interface MarkerProperties {
-  ref: RefObject<HTMLSpanElement>;
-}
+const Marker = forwardRef<HTMLSpanElement | undefined>((_, reference) => {
+  return (
+    <span
+      ref={reference as MutableRefObject<HTMLSpanElement>}
+      aria-hidden='true'
+      className='h-0 w-0'
+    />
+  );
+});
 
-const Marker = ({ ref }: MarkerProperties) => {
-  return <span ref={ref} aria-hidden='true' className='h-0 w-0' />;
-};
+Marker.displayName = 'Marker';
 
 export default Marker;

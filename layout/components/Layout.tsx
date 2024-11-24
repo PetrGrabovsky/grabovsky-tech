@@ -8,15 +8,18 @@ import Footer from './Footer';
 import Header from './Header';
 import LinkedLogo from './LinkedLogo';
 import Main from './Main';
+import Marker from './Marker';
 import MenuButton from './MenuButton';
 import MobileNavContainer from './MobileNavContainer';
 
 const Layout = ({ children }: PropsWithChildren) => {
-  const { isMobile, isNavOpen, toggleNavOpen } = useLayoutManager();
+  const { isMobile, isNavOpen, isShrunk, markerRef, toggleNavOpen } = useLayoutManager();
 
   return (
     <>
-      <Header>
+      <Marker ref={markerRef} />
+
+      <Header className={clsx(isShrunk ? 'h-10' : 'h-16')}>
         <LinkedLogo />
         <MenuButton isNavOpen={isNavOpen} onClick={toggleNavOpen} />
       </Header>
