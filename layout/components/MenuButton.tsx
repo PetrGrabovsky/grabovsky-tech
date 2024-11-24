@@ -1,16 +1,21 @@
+import clsx from 'clsx';
 import { IoMdMenu } from 'react-icons/io';
 import { IoMdClose } from 'react-icons/io';
 
 interface MenuButtonProperties {
   isNavOpen: boolean;
   onClick: () => void;
+  className?: string;
 }
 
-const MenuButton = ({ isNavOpen, onClick }: MenuButtonProperties) => {
+const MenuButton = ({ isNavOpen, onClick, className }: MenuButtonProperties) => {
   const Icon = isNavOpen ? IoMdClose : IoMdMenu;
 
   return (
-    <button className='h-full w-auto py-1 text-gray-400' onClick={onClick}>
+    <button
+      className={clsx('transition-primary h-full w-auto text-gray-400', className)}
+      onClick={onClick}
+    >
       <Icon className='h-full w-auto' />
     </button>
   );

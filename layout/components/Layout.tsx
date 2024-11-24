@@ -19,9 +19,13 @@ const Layout = ({ children }: PropsWithChildren) => {
     <>
       <Marker ref={markerRef} />
 
-      <Header className={clsx(isShrunk ? 'h-10' : 'h-16')}>
+      <Header className={clsx(isShrunk ? 'h-10 py-1' : 'h-16 py-2')}>
         <LinkedLogo />
-        <MenuButton isNavOpen={isNavOpen} onClick={toggleNavOpen} />
+        <MenuButton
+          className={clsx(isShrunk ? 'py-0' : 'py-1')}
+          isNavOpen={isNavOpen}
+          onClick={toggleNavOpen}
+        />
       </Header>
 
       {isMobile && (

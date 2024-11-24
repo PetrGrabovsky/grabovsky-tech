@@ -7,3 +7,9 @@
     @apply bg-neutral-900 bg-opacity-90 backdrop-blur-sm;
   }
 }
+
+@layer utilities {
+  .transition-primary {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
